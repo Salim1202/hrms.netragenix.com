@@ -1561,6 +1561,7 @@
     <Content Include="PayrollLog.aspx" />
     <Content Include="PerformanceLog.aspx" />
     <Content Include="RecruitmentLog.aspx" />
+    <Content Include="SQL Queries\hrms sql 23-06-2021.sql" />
     <Content Include="TaskCreate.aspx" />
     <Content Include="TaskManagement.aspx" />
     <Content Include="TrainingLog.aspx" />
