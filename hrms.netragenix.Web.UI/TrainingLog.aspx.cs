@@ -1,15 +1,12 @@
-﻿using System;
+﻿using hrms.netragenix.BusinessEntities;
+using hrms.netragenix.BusinessLogic;
+using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using hrms.netragenix.BusinessLogic;
-using hrms.netragenix.BusinessEntities;
-using System.IO;
-using System.Data;
-using System.Data.SqlClient;
-using System.Configuration;
 
 namespace hrms.netragenix.Web.UI
 {

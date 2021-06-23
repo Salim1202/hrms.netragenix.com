@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using hrms.netragenix.BusinessEntities;
+﻿using hrms.netragenix.BusinessEntities;
 using hrms.netragenix.BusinessLogic;
-using System.IO;
-using System.Net.Mail;
+using System;
 using System.Net;
+using System.Net.Mail;
+using System.Web;
 
 namespace hrms.netragenix.Web.UI
 {
@@ -41,8 +36,8 @@ namespace hrms.netragenix.Web.UI
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
-        {           
-                        
+        {
+
             Leave leave = new Leave();
 
             leave.leavefrom = Convert.ToDateTime(txtLeaveFrom.Text);

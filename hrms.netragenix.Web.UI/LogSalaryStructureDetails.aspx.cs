@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using hrms.netragenix.BusinessEntities;
+﻿using hrms.netragenix.BusinessEntities;
 using hrms.netragenix.BusinessLogic;
 using hrms.netragenix.DataAccess;
+using System;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Configuration;
+using System.Web;
+using System.Web.UI.WebControls;
 
 namespace hrms.netragenix.Web.UI
 {
@@ -135,13 +132,13 @@ namespace hrms.netragenix.Web.UI
             //int lblsalarystructureid = Convert.ToInt32(gvSalaryStructureDetails.DataKeys[e.RowIndex].Value.ToString());
             GridViewRow row = (GridViewRow)gvSalaryStructureDetails.Rows[e.RowIndex];
             Label lblsalarystructureid = (Label)row.FindControl("lblsalarystructureid") as Label;
-            
+
             TextBox salarystructurename = (TextBox)row.FindControl("txtsalarystructurename") as TextBox;
             TextBox salarystructurevalue = (TextBox)row.FindControl("txtsalarystructurevalue") as TextBox;
             TextBox minvalue = (TextBox)row.FindControl("txtminvalue") as TextBox;
             TextBox maxvalue = (TextBox)row.FindControl("txtmaxvalue") as TextBox;
-                        
-            
+
+
             SqlCommand cmdSalary = new SqlCommand("sp_UpdateSalaryStructure", sqlConnection);
             cmdSalary.CommandType = CommandType.StoredProcedure;
 

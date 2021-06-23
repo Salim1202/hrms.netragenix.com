@@ -1,31 +1,28 @@
-﻿using System;
+﻿using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
+using CrystalDecisions.Web;
+using hrms.netragenix.BusinessEntities;
+using hrms.netragenix.BusinessLogic;
+using hrms.netragenix.DataAccess;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using iTextSharp.tool.xml;
+using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Data;
+using System.Data.SqlClient;
+//using System.Drawing;
+using System.IO;
+using System.Runtime.InteropServices;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using hrms.netragenix.BusinessLogic;
-using hrms.netragenix.BusinessEntities;
-using hrms.netragenix.DataAccess;
-using System.Data;
-using System.Data.SqlClient;
-using iTextSharp.text;
-using iTextSharp.tool.xml.css;
-using iTextSharp.text.pdf;
-using iTextSharp.tool.xml;
-//using System.Drawing;
-using System.IO;
-using CrystalDecisions.CrystalReports.Engine;
-using CrystalDecisions.Shared;
-using CrystalDecisions.Web;
-using System.Runtime.InteropServices;
-using System.Configuration;
 
 namespace hrms.netragenix.Web.UI
 {
     [ComVisible(false)]
     public partial class PayrollManagement : System.Web.UI.Page
-    {        
+    {
         PayrollBL payrollBL = new PayrollBL();
         Authentication authentication = new Authentication();
         EventBL eventBL = new EventBL();
@@ -61,7 +58,7 @@ namespace hrms.netragenix.Web.UI
                 SalarySlipViewer.ReportSource = (CrystalReportViewer)Session["report"];
             }
         }
-        
+
         private void BindEmployeeDropdown()
         {
             List<WorkforceEmployees> listemployees = new List<WorkforceEmployees>();
@@ -75,7 +72,7 @@ namespace hrms.netragenix.Web.UI
         }
 
         public string getPayrollDetails()
-        {            
+        {
             return payrollBL.GetPayrollDetails(authentication.usertype, authentication.employeeid);
         }
 
@@ -154,9 +151,9 @@ namespace hrms.netragenix.Web.UI
             }
 
         }
-        
+
         protected void btnPDFDownload_Click(object sender, EventArgs e)
-        {       
+        {
             DataTable query = GetData(authentication.employeeid);
             //string strQuery = "sptest";
 
@@ -164,7 +161,7 @@ namespace hrms.netragenix.Web.UI
 
             DataTable dt = query;
             //DataTable dt = GetData(query);        
-            
+
             ////Create a dummy GridView
 
             GridView GridView1 = new GridView();
@@ -195,8 +192,8 @@ namespace hrms.netragenix.Web.UI
             //end
 
             pdfDoc.Open();
-            
-            
+
+
             //new code here
             //Header Table
             table = new PdfPTable(2);
@@ -229,7 +226,7 @@ namespace hrms.netragenix.Web.UI
             cell.Colspan = 2;
             cell.PaddingBottom = 10f;
             table.AddCell(cell);
-            
+
 
             //phrase = new Phrase(Environment.NewLine);
             //cell = PhraseCell(phrase, PdfPCell.ALIGN_MIDDLE);
@@ -267,7 +264,7 @@ namespace hrms.netragenix.Web.UI
         }
 
         private static PdfPCell PhraseCell(Phrase phrase, int align)
-        {            
+        {
             PdfPCell cell = new PdfPCell(phrase);
             cell.BorderColor = BaseColor.WHITE;
             cell.VerticalAlignment = PdfPCell.ALIGN_TOP;
@@ -318,14 +315,14 @@ namespace hrms.netragenix.Web.UI
         protected void btnGenerateCrystalReport_Click(object sender, EventArgs e)
         {
             String strConnString = System.Configuration.ConfigurationManager.ConnectionStrings["HRMSConnectionString"].ConnectionString;
-            SqlConnection con = new SqlConnection(strConnString);            
+            SqlConnection con = new SqlConnection(strConnString);
 
             rprt.Load(Server.MapPath("~/MainReport.rpt"));
             rprt.FileName = Server.MapPath("~/MainReport.rpt");
 
             if (authentication.usertype == "Administrator")
-            {              
-                
+            {
+
                 SqlCommand cmd = new SqlCommand("spPdfDownload", con);
                 con.Open();
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
@@ -347,10 +344,10 @@ namespace hrms.netragenix.Web.UI
                 sda1.SelectCommand = cmd1;
                 DataTable dt1 = new DataTable();
 
-                
+
                 sda1.Fill(dt1);
                 //con.Close();
-                
+
                 rprt.Subreports["EmployeeDetailsReport.rpt"].SetDataSource(dt1);
                 rprt.Subreports["EmployeePayrollReport.rpt"].SetDataSource(dt);
             }
@@ -368,23 +365,23 @@ namespace hrms.netragenix.Web.UI
                 cmd.Parameters.AddWithValue("@employeeid", authentication.employeeid);
                 sda.Fill(dt);
 
-                
+
 
                 string query = ("SELECT * FROM vwGetEmployeeDetails where employeeid=" + authentication.employeeid);
                 SqlCommand cmd1 = new SqlCommand(query, con);
-                cmd1.CommandType = CommandType.Text;                
+                cmd1.CommandType = CommandType.Text;
                 SqlDataAdapter sda1 = new SqlDataAdapter(cmd1);
                 sda1.SelectCommand = cmd1;
                 DataTable dt1 = new DataTable();
 
-                
+
                 sda1.Fill(dt1);
-                
+
 
                 rprt.Subreports["EmployeeDetailsReport.rpt"].SetDataSource(dt1);
                 rprt.Subreports["EmployeePayrollReport.rpt"].SetDataSource(dt);
             }
-            
+
 
             SalarySlipViewer.ReportSource = rprt;
             SalarySlipViewer.DataBind();

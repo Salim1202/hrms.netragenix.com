@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Web;
+﻿using hrms.netragenix.BusinessEntities;
 using hrms.netragenix.BusinessLogic;
-using hrms.netragenix.BusinessEntities;
 using hrms.netragenix.DataAccess;
+using System;
+using System.Web;
 
 namespace hrms.netragenix.Web.UI
 {
@@ -14,7 +13,7 @@ namespace hrms.netragenix.Web.UI
         EventBL eventBL = new EventBL();
         MessageBL messageBL = new MessageBL();
         TaskBL taskBL = new TaskBL();
-        LeaveBL leaveBL = new LeaveBL();        
+        LeaveBL leaveBL = new LeaveBL();
         EventDB eventDB = new EventDB();
         Event eventbe = new Event();
         Message msg = new Message();
@@ -29,14 +28,14 @@ namespace hrms.netragenix.Web.UI
                 Response.Redirect("HRMSLogin.aspx");
 
             int LeaveID;
-            
+
 
             if (Request.QueryString["LeaveID"] != null)
             {
                 LeaveID = Convert.ToInt32(Request.QueryString["LeaveID"]);
                 leaveBL.ApproveLeave(LeaveID);
-            }           
-            
+            }
+
         }
 
         public string getBusinessDeskEmployees()
@@ -57,13 +56,13 @@ namespace hrms.netragenix.Web.UI
         }
 
         public string getTopEventDetails()
-        {            
+        {
             return eventBL.GetTopEventDetails();
         }
 
         //This method has been replaced by getUpdatedCountTopEventDetails() so it can be commented
         public string getCountTopEventDetails()
-        {            
+        {
             return eventBL.GetCountTopEventDetails();
         }
 
@@ -72,7 +71,7 @@ namespace hrms.netragenix.Web.UI
             string count = string.Empty;
             if (authentication.usertype != "Administrator")
             {
-                count= eventBL.GetUpdatedCountTopEventDetails(authentication.employeeid, eventbe.eventid);
+                count = eventBL.GetUpdatedCountTopEventDetails(authentication.employeeid, eventbe.eventid);
             }
             return count;
         }
@@ -126,7 +125,7 @@ namespace hrms.netragenix.Web.UI
                 LeaveString += "</li>";
                 LeaveString += "</ul>";
             }
-                        
+
             return LeaveString;
         }
     }
