@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using hrms.netragenix.BusinessEntities;
 using hrms.netragenix.BusinessLogic;
-using hrms.netragenix.BusinessEntities;
 using hrms.netragenix.DataAccess;
+using System;
+using System.Web;
 
 namespace hrms.netragenix.Web.UI
 {
@@ -32,9 +28,9 @@ namespace hrms.netragenix.Web.UI
                 eventid = Convert.ToInt32(Request.QueryString["eventid"]);
                 getUpdatedEventDetails();
             }
-            
-              //getUpdatedEventDetails();
-            
+
+            //getUpdatedEventDetails();
+
         }
 
         //public int getUpdatedEventDetails()
@@ -54,7 +50,7 @@ namespace hrms.netragenix.Web.UI
             string count = string.Empty;
             if (authentication.usertype != "Administrator")
             {
-               count = eventBL.GetUpdatedCountTopEventDetails(authentication.employeeid, eventid);
+                count = eventBL.GetUpdatedCountTopEventDetails(authentication.employeeid, eventid);
             }
             // return eventBL.GetUpdatedCountTopEventDetails(authentication.employeeid, eventid);
             return count;

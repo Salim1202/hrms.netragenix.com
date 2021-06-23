@@ -1,12 +1,11 @@
-﻿using System;
+﻿using hrms.netragenix.BusinessEntities;
+using hrms.netragenix.BusinessLogic;
+using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using hrms.netragenix.BusinessEntities;
-using hrms.netragenix.BusinessLogic;
-using System.IO;
 
 namespace hrms.netragenix.Web.UI
 {
@@ -57,7 +56,7 @@ namespace hrms.netragenix.Web.UI
 
         public void SetEmployeeInformation(string EmployeeCode)
         {
-            if(ddlEmployeeCode.Text != "-- Please Select Employee Code --")
+            if (ddlEmployeeCode.Text != "-- Please Select Employee Code --")
             {
                 Employees employees = new Employees();
                 employees = workforceBL.GetWorkforceEmployeesRawData(ddlEmployeeCode.Text);

@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using hrms.netragenix.BusinessEntities;
+﻿using hrms.netragenix.BusinessEntities;
 using hrms.netragenix.BusinessLogic;
 using hrms.netragenix.DataAccess;
+using System;
 using System.Data;
-using System.Data.SqlClient;
-using System.Configuration;
-using System.IO;
+using System.Web;
+using System.Web.UI;
 
 namespace hrms.netragenix.Web.UI
 {
@@ -30,13 +24,13 @@ namespace hrms.netragenix.Web.UI
             if (authentication == null)
                 Response.Redirect("HRMSLogin.aspx");
 
-            if (!Page.IsPostBack)                
+            if (!Page.IsPostBack)
                 BindSalaryStructureValues();
         }
 
         public void BindSalaryStructureValues()
-        {            
-            DataTable dt = new DataTable();            
+        {
+            DataTable dt = new DataTable();
             dt = salary.BindSalaryStructureValues();
 
             txtBasicPercentage.Text = dt.Rows[0][0].ToString();
@@ -46,7 +40,7 @@ namespace hrms.netragenix.Web.UI
             txtLTAPercentage.Text = dt.Rows[4][0].ToString();
             txtMedicalPercentage.Text = dt.Rows[5][0].ToString();
             txtESIPercentage.Text = Convert.ToDouble(dt.Rows[6][0]).ToString();
-            txtPTPercentage.Text = dt.Rows[7][0].ToString();            
+            txtPTPercentage.Text = dt.Rows[7][0].ToString();
         }
         public string getUserName()
         {
@@ -88,7 +82,7 @@ namespace hrms.netragenix.Web.UI
 
         protected void txtGrossSalary_TextChanged(object sender, EventArgs e)
         {
-            txtBasicAmount.Text = (Convert.ToInt32(txtGrossSalary.Text) * Convert.ToDouble(txtBasicPercentage.Text)/100).ToString();
+            txtBasicAmount.Text = (Convert.ToInt32(txtGrossSalary.Text) * Convert.ToDouble(txtBasicPercentage.Text) / 100).ToString();
             txtDAAmount.Text = (Convert.ToInt32(txtGrossSalary.Text) * Convert.ToDouble(txtDAPercentage.Text) / 100).ToString();
             txtHRAAmount.Text = (Convert.ToInt32(txtGrossSalary.Text) * Convert.ToDouble(txtHRAPercentage.Text) / 100).ToString();
             txtPFAmount.Text = (Convert.ToInt32(txtGrossSalary.Text) * Convert.ToDouble(txtPFPercentage.Text) / 100).ToString();

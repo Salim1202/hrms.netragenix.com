@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1525
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hrms.netragenix.Web.UI", "hrms.netragenix.Web.UI\hrms.netragenix.Web.UI.csproj", "{165FE1D3-65D0-46B1-925E-35C47B5074CE}"
 EndProject
@@ -16,11 +16,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hrms.netragenix.ValidationEngine", "hrms.netragenix.ValidationEngine\hrms.netragenix.ValidationEngine.csproj", "{8454AB64-0385-4B1F-BAE9-E3E681B5236D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hrms.netragenix.Web.API", "hrms.netragenix.Web.API\hrms.netragenix.Web.API.csproj", "{0C9A0394-5C17-4D78-A810-5A362A6F438C}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{03704279-F0DF-427B-A88A-ACEA8613E34D}"
-	ProjectSection(SolutionItems) = preProject
-		C:\Users\Acer\Desktop\Grant.sql = C:\Users\Acer\Desktop\Grant.sql
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

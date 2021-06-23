@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using hrms.netragenix.BusinessEntities;
 using hrms.netragenix.BusinessLogic;
-using hrms.netragenix.BusinessEntities;
-using System.IO;
+using System;
+using System.Web;
 
 namespace hrms.netragenix.Web.UI
 {
@@ -78,6 +73,6 @@ namespace hrms.netragenix.Web.UI
 
             return CommonString;
         }
-        
+
     }
 }
